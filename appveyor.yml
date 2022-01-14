@@ -1,0 +1,24 @@
+os: Ubuntu2004
+platform:
+  - x64
+install:
+  - sudo apt update
+  - sudo apt install ca-certificates
+  - . /etc/os-release
+  - echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /" | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
+  - curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key | sudo apt-key add -
+  - sudo apt update
+  - sudo apt -y upgrade
+  - sudo apt -y install podman
+build_script:
+  - git clone https://github.com/CM2Walki/steamcmd.git src/steamcmd
+  - cd ${APPVEYOR_BUILD_FOLDER}/src/steamcmd/buster
+  - sudo podman build -t extra2000/cm2network/steamcmd:test -f Dockerfile .
+  - cd ${APPVEYOR_BUILD_FOLDER}
+on_success:
+  - wget https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh
+  - sudo bash install.sh
+  - nvm install lts/*
+  - npm i -D semantic-release @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/changelog @semantic-release/npm @semantic-release/github @semantic-release/git @semantic-release/exec @commitlint/cli @commitlint/config-conventional
+  - npx semantic-release
+test: off
