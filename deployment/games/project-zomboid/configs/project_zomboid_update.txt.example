@@ -1,0 +1,10 @@
+@ShutdownOnFailedCommand 1  // set to 0 if updating multiple servers at once
+@NoPromptForPassword 1  // disables promt for password on execution
+
+force_install_dir /home/steam/project-zomboid-server  // will be installed into this directory
+
+login anonymous  // logs in with steams public anonymous account
+
+app_update 380870 validate  // will update Project Zomboid and validate the files received
+
+quit

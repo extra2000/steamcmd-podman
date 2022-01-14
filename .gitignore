@@ -1,0 +1,6 @@
+output/*
+
+src/*
+!src/.gitkeep
+
+docs-steamcmd-pod.yaml

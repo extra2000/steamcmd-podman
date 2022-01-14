@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: squad-pod
+  name: squad-pod
+  annotations:
+    seccomp.security.alpha.kubernetes.io/pod: localhost/default.json
+spec:
+  restartPolicy: OnFailure
+  hostNetwork: true
+  containers:
+  - name: srv01
+    image: localhost/extra2000/cm2network/steamcmd:STEAMCMD_TAG
+    workingDir: /home/steam/squad-server
+    command: ["./SquadGameServer.sh"]
+    args:
+    - "Port=7787"
+    - "QueryPort=27165"
+    - "FIXEDMAXPLAYERS=50"
+    - "FIXEDMAXTICKRATE=50"
+    - "RANDOM=NONE"
+    securityContext:
+      allowPrivilegeEscalation: false
+      privileged: false
+      capabilities:
+        add: []
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      seLinuxOptions:
+        type: squad_pod.process
+    resources:
+      requests:
+        memory: 4000Mi
+        cpu: 2000m
+      limits:
+        memory: 4000Mi
+        cpu: 2000m
+    volumeMounts:
+    - mountPath: /home/steam/squad-server
+      name: squad-game-dir
+  volumes:
+  - name: squad-game-dir
+    persistentVolumeClaim:
+      claimName: steam-squad-server

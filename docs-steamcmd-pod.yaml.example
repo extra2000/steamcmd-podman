@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: docs-steamcmd-pod
+  name: docs-steamcmd-pod
+spec:
+  restartPolicy: OnFailure
+  hostNetwork: false
+  containers:
+  - name: httpd-01
+    image: docker.io/library/httpd:2.4
+    securityContext:
+      allowPrivilegeEscalation: false
+      privileged: false
+      capabilities:
+        add: []
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      seLinuxOptions:
+        type: docs_steamcmd_pod.process
+    resources:
+      requests:
+        memory: 100Mi
+        cpu: 100m
+      limits:
+        memory: 100Mi
+        cpu: 100m
+    ports:
+    - containerPort: 80
+      hostPort: 18080
+      hostIP: 0.0.0.0
+      protocol: tcp
+    volumeMounts:
+    - mountPath: /usr/local/apache2/htdocs
+      name: htdocs
+      readOnly: true
+  volumes:
+  - name: htdocs
+    hostPath:
+      path: ./output/html

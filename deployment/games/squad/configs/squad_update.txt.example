@@ -1,0 +1,10 @@
+@ShutdownOnFailedCommand 1  // set to 0 if updating multiple servers at once
+@NoPromptForPassword 1  // disables promt for password on execution
+
+force_install_dir /home/steam/squad-server  // will be installed into this directory
+
+login anonymous  // logs in with steams public anonymous account
+
+app_update 403240 validate  // will update the squad server and validate the files recived
+
+quit

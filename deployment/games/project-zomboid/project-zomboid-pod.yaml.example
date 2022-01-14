@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: project-zomboid-pod
+  name: project-zomboid-pod
+  annotations:
+    seccomp.security.alpha.kubernetes.io/pod: localhost/default.json
+spec:
+  restartPolicy: OnFailure
+  hostNetwork: true
+  containers:
+  - name: srv01
+    image: localhost/extra2000/cm2network/steamcmd:STEAMCMD_TAG
+    workingDir: /home/steam/project-zomboid-server
+    command: ["./start-server.sh"]
+    args:
+    - "-servername"
+    - "my-test-server"
+    securityContext:
+      allowPrivilegeEscalation: false
+      privileged: false
+      capabilities:
+        add: []
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      seLinuxOptions:
+        type: project_zomboid_pod.process
+    resources:
+      requests:
+        memory: 3600Mi
+        cpu: 2000m
+      limits:
+        memory: 3600Mi
+        cpu: 2000m
+    volumeMounts:
+    - mountPath: /home/steam/project-zomboid-server
+      name: project-zomboid-game-dir
+    - mountPath: /home/steam/Zomboid
+      name: project-zomboid-database
+  volumes:
+  - name: project-zomboid-game-dir
+    persistentVolumeClaim:
+      claimName: steam-project-zomboid-server
+  - name: project-zomboid-database
+    persistentVolumeClaim:
+      claimName: steam-project-zomboid-database

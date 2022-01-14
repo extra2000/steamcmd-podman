@@ -1,0 +1,7 @@
+configmaps/*
+!configmaps/*.example
+
+configs/*
+!configs/*.example
+
+squad-pod.yaml

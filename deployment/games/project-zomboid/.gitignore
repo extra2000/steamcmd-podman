@@ -1,0 +1,7 @@
+configmaps/*
+!configmaps/*.example
+
+configs/*
+!configs/*.example
+
+project-zomboid-pod.yaml
