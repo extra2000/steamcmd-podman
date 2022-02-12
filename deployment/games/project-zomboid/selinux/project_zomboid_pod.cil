@@ -5,4 +5,6 @@
     (allow process node_t ( udp_socket ( node_bind )))
     (allow process unreserved_port_t ( tcp_socket ( name_connect )))
     (allow process unreserved_port_t ( udp_socket ( name_bind )))
+    (allow process mongod_port_t ( tcp_socket ( name_connect )))
+    (allow process self ( tcp_socket ( listen )))
 )
