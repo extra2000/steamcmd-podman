@@ -33,7 +33,7 @@ Load SELinux security policy:
     :linenos:
 
     sudo semodule \
-    -i selinux/squad_pod.cil \
+    -i selinux/squad_podman.cil \
     /usr/share/udica/templates/{base_container.cil,net_container.cil}
 
 Create Squad volume:
@@ -51,7 +51,7 @@ Spawn a ``steamcmd`` container:
     podman run -it --rm \
     -v steam-squad-server:/home/steam/squad-server:rw \
     -v ./configs/squad_update.txt:/tmp/squad_update.txt:ro \
-    --security-opt label=type:squad_pod.process \
+    --security-opt label=type:squad_podman.process \
     localhost/extra2000/cm2network/steamcmd \
     bash
 

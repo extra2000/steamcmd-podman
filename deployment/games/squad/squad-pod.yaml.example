@@ -30,7 +30,7 @@ spec:
         - CAP_NET_RAW
         - CAP_AUDIT_WRITE
       seLinuxOptions:
-        type: squad_pod.process
+        type: squad_podman.process
     resources:
       requests:
         memory: 4000Mi

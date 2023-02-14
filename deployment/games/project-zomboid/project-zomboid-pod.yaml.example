@@ -27,7 +27,7 @@ spec:
         - CAP_NET_RAW
         - CAP_AUDIT_WRITE
       seLinuxOptions:
-        type: project_zomboid_pod.process
+        type: project_zomboid_podman.process
     resources:
       requests:
         memory: 3600Mi

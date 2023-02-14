@@ -1,4 +1,4 @@
-(block squad_pod
+(block squad_podman
     (blockinherit container)
     (allow process http_port_t ( tcp_socket ( name_connect )))
     (allow process node_t ( tcp_socket ( node_bind )))

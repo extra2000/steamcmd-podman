@@ -40,7 +40,7 @@ Load SELinux security policy:
     :linenos:
 
     sudo semodule \
-    -i selinux/project_zomboid_pod.cil \
+    -i selinux/project_zomboid_podman.cil \
     /usr/share/udica/templates/{base_container.cil,net_container.cil}
 
 Create Project Zomboid volume:
@@ -58,7 +58,7 @@ Spawn ``steamcmd`` container:
     podman run -it --rm \
     -v steam-project-zomboid-server:/home/steam/project-zomboid-server:rw \
     -v ./configs/project_zomboid_update.txt:/tmp/project_zomboid_update.txt:ro \
-    --security-opt label=type:project_zomboid_pod.process \
+    --security-opt label=type:project_zomboid_podman.process \
     localhost/extra2000/cm2network/steamcmd \
     bash
 
@@ -109,7 +109,7 @@ Spawn a ``steamcmd`` container:
     --memory 3600M \
     -v steam-project-zomboid-server:/home/steam/project-zomboid-server:rw \
     -v steam-project-zomboid-database:/home/steam/Zomboid:rw \
-    --security-opt label=type:project_zomboid_pod.process \
+    --security-opt label=type:project_zomboid_podman.process \
     localhost/extra2000/cm2network/steamcmd \
     bash
 
