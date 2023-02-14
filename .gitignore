@@ -1,6 +1,3 @@
-output/*
-
-src/*
-!src/.gitkeep
-
-docs-steamcmd-pod.yaml
+/src/steamcmd
+/output
+/docs/source/__pycache__

@@ -9,6 +9,7 @@ Welcome to Steamcmd Podman's documentation!
   glossary
   legal_notices
   introduction
+  changelog
   host_preparations
   prerequisites
   game_project_zomboid

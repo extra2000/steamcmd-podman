@@ -42,8 +42,13 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.autodoc',
     'sphinxcontrib.programoutput',
+    'sphinx_copybutton',
+    'sphinx_multiversion',
+    'm2r2',
     'sphinx_rtd_dark_mode'
 ]
+
+source_suffix = ['.rst', '.md']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -89,3 +94,5 @@ html_context = {
   'github_repo': 'steamcmd-podman',
   'github_version': 'master/docs/source/',
 }
+
+html_codeblock_linenos_style = 'table'

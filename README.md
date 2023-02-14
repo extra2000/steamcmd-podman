@@ -7,58 +7,32 @@
 SteamCMD deployment using Podman.
 
 
-## Prerequisites
-
-Build Sphinx image:
-```
-podman build -t extra2000/sphinx .
-```
-
-
 ## How to build docs into HTML
+
+Create `./output` to store rendered HTML output:
+```
+mkdir -pv output
+```
+
+Allow this project directory to be mounted into Podman container:
+```
+chcon -R -v -t container_file_t .
+```
 
 **NOTE:** The `chcon` commands are for SELinux platforms only.
 
-Allow `./docs` to be mounted into Podman container:
+To build docs for all versions (uncommit changes will not be included into build due to `sphinx-multiversion` limitations):
 ```
-chcon -R -v -t container_file_t ./docs
-```
-
-Create `./output` and `docs/build` directories to store rendered HTML output and allow the directory to be mounted into Podman container:
-```
-mkdir -pv output docs/build
-chcon -R -v -t container_file_t ./output docs/build
+podman run -it --rm \
+--network none \
+-v ./:/srv:rw extra2000/sphinx \
+sphinx-multiversion ./docs/source ./output/html
 ```
 
-Build docs:
+To build docs for current uncommit changes:
 ```
-podman run -it --rm --network none -v ./docs:/srv/docs:ro -v ./output:/srv/docs/build:rw extra2000/sphinx make clean html
-```
-
-
-## How to deploy docs
-
-Import SELinux Security Policy for `httpd` container:
-```
-sudo semodule -i docs_steamcmd_pod.cil /usr/share/udica/templates/{base_container.cil,net_container.cil}
-```
-
-Create `no-internet` network:
-```
-podman network create no-internet --internal
-```
-
-Deploy docs:
-```
-podman run --rm --network no-internet -p 18080:80 -v ./output/html:/usr/local/apache2/htdocs:ro --security-opt label=type:docs_steamcmd_pod.process docker.io/library/httpd:2.4
-```
-
-To deploy docs using pod, create pod file:
-```
-cp -v docs-steamcmd-pod.yaml{.example,}
-```
-
-Then, deploy docs using pod:
-```
-podman play kube --network no-internet docs-steamcmd-pod.yaml
+podman run -it --rm \
+--network none \
+-v ./:/srv:rw \
+extra2000/sphinx sphinx-build ./docs/source ./output/html/dev
 ```
