@@ -11,7 +11,7 @@ spec:
   hostNetwork: true
   containers:
   - name: srv01
-    image: localhost/extra2000/cm2network/steamcmd:STEAMCMD_TAG
+    image: localhost/extra2000/cm2network/steamcmd
     workingDir: /home/steam/squad-server
     command: ["./SquadGameServer.sh"]
     args:
