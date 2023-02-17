@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.0.1](https://github.com/extra2000/steamcmd-podman/compare/v2.0.0...v2.0.1) (2023-02-17)
+
+
+### Maintenance
+
+* **gitignore:** add `/secrets/.gitkeep` ([3ab5062](https://github.com/extra2000/steamcmd-podman/commit/3ab506238b733e1a6b53f44b0dced76f7964554e))
+
+
+### Documentations
+
+* **project-zomboid:** add instruction to soft reset ([143313c](https://github.com/extra2000/steamcmd-podman/commit/143313cb11ba6a8b959fc192b6c7a704b5de83f1))
+* **project-zomboid:** add port `16262/udp` ([df6d223](https://github.com/extra2000/steamcmd-podman/commit/df6d223cceb45c64b2f0e3ad9bcd710d43b6629e))
+
 ## [2.0.0](https://github.com/extra2000/steamcmd-podman/compare/v1.0.0...v2.0.0) (2023-02-14)
 
 
