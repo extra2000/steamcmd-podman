@@ -4,4 +4,7 @@ configmaps/*
 configs/*
 !configs/*.example
 
+/secrets/*
+!/secrets/.gitkeep
+
 project-zomboid-pod.yaml
