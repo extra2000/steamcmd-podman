@@ -151,6 +151,7 @@ The following ports needed to be opened:
 
     * ``8766/udp``
     * ``16261/udp``
+    * ``16262/udp``
 
 You can either use ``firewall-cmd`` commands or create zone file ``/etc/firewalld/zones/project-zomboid.xml`` with the following lines:
 
@@ -163,6 +164,7 @@ You can either use ``firewall-cmd`` commands or create zone file ``/etc/firewall
       <port port="22" protocol="tcp"/>
       <port port="8766" protocol="udp"/>
       <port port="16261" protocol="udp"/>
+      <port port="16262" protocol="udp"/>
     </zone>
 
 .. note::
