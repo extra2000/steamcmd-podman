@@ -127,6 +127,8 @@ Create admin password for server ``my-test-server`` and then terminate Project Z
 
 Configure memory by setting ``-Xms3590m`` and ``-Xmx3590m`` values in ``/home/steam/project-zomboid-server/ProjectZomboid64.json`` using ``nano``.
 
+To soft reset the server, add ``-Dsoftreset`` parameter into ``/home/steam/project-zomboid-server/ProjectZomboid64.json``. The server will be automatically terminated and then remove the parameter.
+
 To configure sandbox, edit ``/home/steam/Zomboid/Server/my-test-server.ini`` file.
 
 Deploy Project Zomboid
