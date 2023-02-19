@@ -13,4 +13,5 @@ Welcome to Steamcmd Podman's documentation!
   host_preparations
   prerequisites
   game_project_zomboid
+  sevendaystodie
   game_squad
