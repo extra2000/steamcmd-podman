@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: sevendaystodie-pod
+  name: sevendaystodie-pod
+  annotations:
+    seccomp.security.alpha.kubernetes.io/pod: localhost/default.json
+spec:
+  restartPolicy: OnFailure
+  hostNetwork: true
+  containers:
+  - name: srv01
+    image: localhost/extra2000/cm2network/steamcmd
+    workingDir: /home/steam/sevendaystodie-server
+    command: ["./startserver.sh"]
+    args:
+    - "-configfile=serverconfig.xml"
+    securityContext:
+      allowPrivilegeEscalation: false
+      privileged: false
+      capabilities:
+        add: []
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      seLinuxOptions:
+        type: sevendaystodie_podman.process
+    resources:
+      requests:
+        memory: 3500Mi
+        cpu: 2000m
+      limits:
+        memory: 3500Mi
+        cpu: 2000m
+    volumeMounts:
+    - mountPath: /home/steam/sevendaystodie-server
+      name: sevendaystodie-game-dir
+    - mountPath: /home/steam/.local/share/7DaysToDie
+      name: sevendaystodie-database
+  volumes:
+  - name: sevendaystodie-game-dir
+    persistentVolumeClaim:
+      claimName: steam-sevendaystodie-server
+  - name: sevendaystodie-database
+    persistentVolumeClaim:
+      claimName: steam-sevendaystodie-database

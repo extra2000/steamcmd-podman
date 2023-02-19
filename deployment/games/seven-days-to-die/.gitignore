@@ -1,0 +1,10 @@
+configmaps/*
+!configmaps/*.example
+
+configs/*
+!configs/*.example
+
+/secrets/*
+!/secrets/.gitkeep
+
+sevendaystodie-pod.yaml
