@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.0](https://github.com/extra2000/steamcmd-podman/compare/v2.0.1...v2.1.0) (2023-02-19)
+
+
+### Features
+
+* **games:** add `7 Days To Die` ([d6aadfd](https://github.com/extra2000/steamcmd-podman/commit/d6aadfd8e680a60836d77efafe368ccc0e5e4c69))
+
+
+### Documentations
+
+* add docs for `7 Days To Die` ([049e263](https://github.com/extra2000/steamcmd-podman/commit/049e263e1c829ca61b2dd8350cfc625bac547f5f))
+
 ## [2.0.1](https://github.com/extra2000/steamcmd-podman/compare/v2.0.0...v2.0.1) (2023-02-17)
 
 
